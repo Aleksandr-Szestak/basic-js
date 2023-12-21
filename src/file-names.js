@@ -20,38 +20,27 @@ const { NotImplementedError } = require('../extensions/index.js');
   // remove line with error and write your code here
 // }
 function renameFiles(names) {
+  let i, j, c;
 
-  console.log(names);
+  i=0;
+  while (i < names.length){
 
-  for (let i=1; i<names.length; i++) {
-    
-    for (j=i-1; j>=0; j--) {
+    currentItem = names[i];
+    c=0;
+    j=i+1;
 
-//    console.log(i, names[i],'---',j, names[j]);
-      
-      
-      if (names[i] === names[j]) {
-        
-        idx=0;
-        /*
-        b1=names[j].lastIndexOf('(')
-        if (b1 !== -1){
-          b2=names[j].lastIndexOf(')')
-          if (b2 !== -1){
-            //console.log (names[j].slice(b1+1,b2));
-            idx=Number(names[j].slice(b1+1,b2))
-          }
-        }
-        */
-
-        names[i] = `${names[i]}(${idx+1})`
-
+    while (j < names.length){
+      if (names[j] === currentItem) {
+        c++;
+        names[j] = `${names[j]}(${c})`
       }
-
+      j++;
     }
+
+    i++;
   }
 
-  console.log(names);
+  return names;
 }
 
 module.exports = {
