@@ -12,28 +12,25 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function encodeLine(str) {
   let result='';
-  let i=0, j, s, currSymb;
-  
+  let i=0;
+  let j;
+  let s;
+  let currSymb;  
   while (i < str.length) {
     currSymb = str[i];
-    console.log(currSymb);
-  
-    j=i+1;
-    s=1;
-    while (j < str.length && str[j] === currSymb){
-      s++;
-      j++;
-    }
-  
-    if (s>1) {
-      result += String(s)+currSymb;
+    j = i + 1;
+    s = 1;
+    while (j < str.length && str[j] === currSymb) {
+      s += 1;
+      j += 1;
+    }  
+    if (s > 1) {
+      result += String(s) + currSymb;
     } else {
       result += currSymb;
     }
-  
-    i=j;
+    i = j;
   }
-  
   return result;
 }
 
