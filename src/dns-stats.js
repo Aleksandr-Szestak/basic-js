@@ -23,30 +23,27 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getDNSStats(domains) {
-// throw new NotImplementedError('Not implemented');
-// remove line with error and write your code here
-let arrDomains;
-let result = {};
-let oneDomain, oneDomainStr;
-
-domains.forEach((item) => {
-  arrDomains = item.split('.');
-  for (i=0; i<arrDomains.length; i++){
-    oneDomain = [];
-    oneDomain.unshift(arrDomains[i]);
-    for (j=i+1; j<arrDomains.length; j++){
-      oneDomain.unshift(arrDomains[j]);
+  let arrDomains;
+  let result = {};
+  let oneDomain;
+  let oneDomainStr;
+  domains.forEach((item) => {
+    arrDomains = item.split('.');
+    for (i = 0; i < arrDomains.length; i += 1) {
+      oneDomain = [];
+      oneDomain.unshift(arrDomains[i]);
+      for (j = i + 1; j < arrDomains.length; j += 1) {
+        oneDomain.unshift(arrDomains[j]);
+      }
+      oneDomainStr = '.' + oneDomain.join('.');
+      if (oneDomainStr in result) {
+        result[oneDomainStr] = result[oneDomainStr] + 1;
+      } else {
+        result[oneDomainStr] = 1;
+      }
     }
-    oneDomainStr = '.' + oneDomain.join('.');
-    if ( oneDomainStr in result) {
-      result[oneDomainStr] = result[oneDomainStr] + 1;
-    }
-    else {
-      result[oneDomainStr] = 1;
-    }
-  }
-});
-return result;
+  });
+  return result;
 }
 
 module.exports = {
