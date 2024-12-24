@@ -15,11 +15,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function isMAC48Address(n) {
-  // throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
   let pattern = /^[0-9a-f]{2}(-[0-9a-f]{2}){5}$/i;
   return pattern.test(n);
 }
+
 module.exports = {
   isMAC48Address
 };
